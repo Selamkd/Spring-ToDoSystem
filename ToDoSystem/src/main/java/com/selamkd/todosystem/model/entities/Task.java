@@ -4,11 +4,14 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "Tasks")
 public class Task {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TaskID", nullable = false)
     private Integer id;
 
@@ -23,6 +26,15 @@ public class Task {
     @Lob
     @Column(name = "Status", nullable = false)
     private String status;
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+          name = "UserTasks",
+          joinColumns = @JoinColumn(name = "TaskID"),
+          inverseJoinColumns = @JoinColumn(name = "UserID")
+  )
+  private Set<User> users;
+
 
     public Integer getId() {
         return id;
@@ -40,8 +52,8 @@ public class Task {
         this.title = title;
     }
 
-    public Instant getCreatedAt() {
-        return createdAt;
+    public LocalDate getCreatedAt() {
+        return LocalDate.from(createdAt);
     }
 
     public void setCreatedAt(Instant createdAt) {

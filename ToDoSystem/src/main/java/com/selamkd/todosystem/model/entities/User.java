@@ -1,14 +1,14 @@
 package com.selamkd.todosystem.model.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Users")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserID", nullable = false)
     private Integer id;
 
@@ -18,6 +18,14 @@ public class User {
     @Column(name = "UserPassword", length = 100)
     private String userPassword;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "UserTasks",
+            joinColumns = @JoinColumn(name = "UserID"),
+            inverseJoinColumns = @JoinColumn(name = "TaskID")
+
+    )
+     private List<Task> tasks;
     public Integer getId() {
         return id;
     }
