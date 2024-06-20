@@ -1,7 +1,7 @@
 
-CREATE DATABASE `ToDoSystem` DEFAULT CHARACTER SET utf8mb4;
+CREATE DATABASE `taskmanager` DEFAULT CHARACTER SET utf8mb4;
 
-       USE `ToDoSystem`;
+       USE `taskmanager`;
 
 
 DROP TABLE IF EXISTS Users;

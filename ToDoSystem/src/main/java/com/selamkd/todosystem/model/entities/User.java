@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Users", schema = "ToDoSystem")
+@Table(name = "Users")
 public class User {
     @Id
     @Column(name = "UserID", nullable = false)

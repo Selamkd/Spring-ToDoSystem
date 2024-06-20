@@ -3,7 +3,7 @@ package com.selamkd.todosystem.model.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "UserTasks", schema = "ToDoSystem")
+@Table(name = "UserTasks")
 public class UserTask {
     @EmbeddedId
     private UserTaskId id;

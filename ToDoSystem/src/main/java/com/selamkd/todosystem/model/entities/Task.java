@@ -6,7 +6,7 @@ import org.hibernate.annotations.ColumnDefault;
 import java.time.Instant;
 
 @Entity
-@Table(name = "Tasks", schema = "ToDoSystem")
+@Table(name = "Tasks")
 public class Task {
     @Id
     @Column(name = "TaskID", nullable = false)
@@ -23,9 +23,6 @@ public class Task {
     @Lob
     @Column(name = "Status", nullable = false)
     private String status;
-
-    @Column(name = "Description")
-    private String description;
 
     public Integer getId() {
         return id;
@@ -57,14 +54,6 @@ public class Task {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
 }
