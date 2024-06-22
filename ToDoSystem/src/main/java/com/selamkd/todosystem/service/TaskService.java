@@ -1,56 +1,26 @@
 package com.selamkd.todosystem.service;
 
-import com.selamkd.todosystem.model.repositories.TaskRepository;
 import com.selamkd.todosystem.model.entities.Task;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-public class TaskService {
-    private final TaskRepository taskRepository;
+public interface TaskService {
+    Task saveTask(Task task);
 
-    public TaskService(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
-    }
+    List<Task> getAllTasks();
 
-    public Task saveTask(Task task) {
-        return taskRepository.save(task);
-    }
+    Optional<Task> getTaskById(Integer id);
 
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
-    }
+    boolean deleteTaskById(Integer id);
 
-    public Optional<Task> getTaskById(Integer id) {
-        if (id == null) {
-            return Optional.empty();
-        }
-        return taskRepository.findById(id);
-    }
+    List<Task> findTaskByTitle(String title);
 
-    public void deleteTasKById(Integer id) {
-        Optional<Task> tasks = taskRepository.findById(id);
-        tasks.ifPresent(taskRepository::delete);
-        // throw an exception
-    }
+    List<Task> findTaskByUserId(Integer userId);
 
-    public List<Task> findTaskByTitle(String title) {
-        String titleLower = title.toLowerCase();
-        return taskRepository.findByTitleContaining(titleLower);
+    List<Task> findTaskByUserName(String userName);
 
-    }
 
-    public List<Task> findTaskByUserID(Integer userID) {
-        return taskRepository.findByUsers_Id(userID);
-    }
 
-    public List<Task> findTaskByUserName(String userName) {
-        return taskRepository.findByUsers_name(userName);
-    }
 
-    public List<Task> findTaskByCreatedDateBetween(LocalDate startDate, LocalDate endDate) {
-         return taskRepository.findByCreatedAtBetween(startDate, endDate);
-    }
 }

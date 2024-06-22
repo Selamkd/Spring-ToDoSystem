@@ -5,6 +5,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -18,12 +19,13 @@ public class Task {
     @Column(name = "Title")
     private String title;
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "CreatedAt")
-    private Instant createdAt;
 
-    @ColumnDefault("'Pending'")
-    @Lob
+    @Column(name = "CreatedAt", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "Description")
+    private String description;
+
     @Column(name = "Status", nullable = false)
     private String status;
 
@@ -35,6 +37,13 @@ public class Task {
   )
   private Set<User> users;
 
+  @PrePersist
+  protected void onCreate() {
+      createdAt = LocalDateTime.now();
+      if(this.status == null){
+          this.status = "Pending";
+      }
+  }
 
     public Integer getId() {
         return id;
@@ -52,11 +61,11 @@ public class Task {
         this.title = title;
     }
 
-    public LocalDate getCreatedAt() {
-        return LocalDate.from(createdAt);
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedAt(Instant createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -66,6 +75,13 @@ public class Task {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getDescription() {
+      return description;
+    }
+    public void setDescription(String description) {
+      this.description = description;
     }
 
 }

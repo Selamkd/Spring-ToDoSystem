@@ -12,6 +12,6 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 
     List<Task> findByTitleContaining(String title);
     List<Task> findByUsers_Id(Integer userId);
-    List<Task> findByUsers_name(String name);
-    List<Task> findByCreatedAtBetween(LocalDate startDate, LocalDate  endDate);
+    List<Task> findByUsers_UserName(String name);
+
 }
