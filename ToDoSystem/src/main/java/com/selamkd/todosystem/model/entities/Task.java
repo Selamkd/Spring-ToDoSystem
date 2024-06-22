@@ -6,6 +6,7 @@ import org.hibernate.annotations.ColumnDefault;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -35,7 +36,7 @@ public class Task {
           joinColumns = @JoinColumn(name = "TaskID"),
           inverseJoinColumns = @JoinColumn(name = "UserID")
   )
-  private Set<User> users;
+  private Set<User> users = new HashSet<>();
 
   @PrePersist
   protected void onCreate() {
@@ -82,6 +83,10 @@ public class Task {
     }
     public void setDescription(String description) {
       this.description = description;
+    }
+
+    public Set<User> getUsers() {
+      return users;
     }
 
 }

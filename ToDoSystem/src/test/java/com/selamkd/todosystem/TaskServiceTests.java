@@ -1,12 +1,12 @@
 package com.selamkd.todosystem;
 
 import com.selamkd.todosystem.model.entities.Task;
+import com.selamkd.todosystem.model.entities.User;
 import com.selamkd.todosystem.model.repositories.TaskRepository;
 import com.selamkd.todosystem.service.TaskServiceImp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -33,7 +33,7 @@ public class TaskServiceTests {
         taskEntity.setStatus("Pending");
         taskEntity.setDescription("Testing a new task description");
         //--------------------------------------------------------//
-        Mockito.when(taskRepository.save(taskEntity)).thenReturn(taskEntity);
+        when(taskRepository.save(taskEntity)).thenReturn(taskEntity);
         Task savedTask = taskService.saveTask(taskEntity);
         //------------------------------------------------------//
         Assertions.assertNotNull(savedTask);
@@ -117,7 +117,6 @@ public class TaskServiceTests {
     }
 
 
-
     @Test
     @DisplayName("deleteTaskById_ deletes a record from the table")
     void deleteTaskByIdDeletesARecordFromTheTable() {
@@ -134,7 +133,78 @@ public class TaskServiceTests {
 
     }
 
+    @Test
+    @DisplayName("findTaskByTitle_ returns a task containing the title")
+    void findTaskByTitle_ReturnsATaskContainingTheTitle() {
+        Task task1 = new Task();
+        task1.setTitle("Task 1 test title");
+        Task task2 = new Task();
+        task2.setTitle("Task 2 test title");
+        String title = "test";
+        when(taskRepository.findByTitleContaining(title)).thenReturn(List.of(task1, task2));
+        List<Task> tasks = taskService.findTaskByTitle(title);
+        System.out.println(tasks);
+        Assertions.assertNotNull(tasks);
+        Assertions.assertEquals(2, tasks.size());
+        Assertions.assertEquals(task1.getTitle(), tasks.getFirst().getTitle());
+        Assertions.assertEquals(task2.getTitle(), tasks.getLast().getTitle());
 
+
+    }
+
+    @Test
+    @DisplayName("findTaskbyUserName_ return tasks authored by the user name provided")
+    void findTaskByUserName_ReturnsTaskWithTheMatchingId() {
+
+        User user = new User();
+        user.setUserName("testUser");
+        user.setId(1);
+
+        Task task1 = new Task();
+        task1.setTitle("Task 1 test title");
+        task1.getUsers().add(user);
+
+        Task task2 = new Task();
+        task2.setTitle("Task 2 test title");
+        task2.getUsers().add(user);
+
+        when(taskRepository.findByUsers_UserName("testUser")).thenReturn(List.of(task1, task2));
+
+        List<Task> foundTasks = taskService.findTaskByUserName("testUser");
+
+        Assertions.assertNotNull(foundTasks);
+
+        Assertions.assertEquals(2, foundTasks.size());
+
+        Assertions.assertEquals(task1.getTitle(), foundTasks.getFirst().getTitle());
+        Assertions.assertEquals(task2.getTitle(), foundTasks.getLast().getTitle());
+
+    }
+
+    @Test
+    @DisplayName("findByUserId returns tasks authored by user with matching ID")
+    void findByUserIdReturnsTasksAuthoredByUserWithMatchingId() {
+        User user = new User();
+        user.setId(1);
+        user.setUserName("testUser");
+
+
+        Task task1 = new Task();
+        task1.setTitle("Task 1 test title");
+        task1.getUsers().add(user);
+
+        Task task2 = new Task();
+        task2.setTitle("Task 2 test title");
+        task2.getUsers().add(user);
+
+        when(taskRepository.findByUsers_Id(1)).thenReturn(List.of(task1, task2));
+
+        List<Task> foundTasks = taskService.findTaskByUserId(1);
+
+        Assertions.assertNotNull(foundTasks);
+        Assertions.assertEquals(2, foundTasks.size());
+        Assertions.assertEquals(task1.getTitle(), foundTasks.getFirst().getTitle());
+    }
 
 
 }
