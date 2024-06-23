@@ -11,9 +11,9 @@ import java.util.Optional;
 
 @Service
 public class TaskServiceImp implements TaskService {
-    @Autowired
     private final TaskRepository taskRepository;
 
+    @Autowired
     public TaskServiceImp(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
