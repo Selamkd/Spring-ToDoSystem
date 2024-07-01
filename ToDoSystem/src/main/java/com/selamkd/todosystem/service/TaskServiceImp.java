@@ -23,8 +23,8 @@ public class TaskServiceImp implements TaskService {
         return taskRepository.save(task);
     }
 
-    public Task updateTask(Integer id, Task updatedTask) {
-        Optional<Task> taskOptional = taskRepository.findById(id);
+    public Task updateTask(String id, Task updatedTask) {
+        Optional<Task> taskOptional = taskRepository.findById(Integer.valueOf(id));
         if (taskOptional.isPresent()) {
             Task taskToUpdate = taskOptional.get();
             taskToUpdate.setTitle(updatedTask.getTitle());
@@ -41,15 +41,15 @@ public class TaskServiceImp implements TaskService {
         return taskRepository.findAll();
     }
 
-    public Optional<Task> getTaskById(Integer id) {
+    public Optional<Task> getTaskById(String  id) {
         if (id == null) {
             return Optional.empty();
         }
-        return taskRepository.findById(id);
+        return taskRepository.findById(Integer.valueOf(id));
     }
 
-    public boolean deleteTaskById(Integer id) {
-        Optional<Task> tasks = taskRepository.findById(id);
+    public boolean deleteTaskById(String id) {
+        Optional<Task> tasks = taskRepository.findById(Integer.valueOf(id));
         tasks.ifPresent(taskRepository::delete);
 
         if(tasks.isPresent()) {
@@ -65,8 +65,8 @@ public class TaskServiceImp implements TaskService {
 
     }
 
-    public List<Task> findTaskByUserId(Integer userID) {
-        return taskRepository.findByUsers_Id(userID);
+    public List<Task> findTaskByUserId(String userID) {
+        return taskRepository.findByUsers_Id(Integer.valueOf(userID));
     }
 
     public List<Task> findTaskByUserName(String userName) {

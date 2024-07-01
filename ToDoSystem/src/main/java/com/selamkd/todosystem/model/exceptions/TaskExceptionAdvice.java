@@ -17,4 +17,29 @@ public class TaskExceptionAdvice {
 
         return ResponseEntity.status( HttpStatus.NOT_FOUND).body(response);
     }
+
+    @ExceptionHandler(TasksNotFoundException.class)
+    public ResponseEntity<ResponseBody> handleTasksNotFoundException(TasksNotFoundException e, HttpServletRequest request){
+        ResponseBody response = new ResponseBody(HttpStatus.NOT_FOUND.value(),
+                request.getRequestURL().toString(),
+                e.getMessage());
+
+        return ResponseEntity.status( HttpStatus.NOT_FOUND).body(response);
+    }
+    @ExceptionHandler(TaskNotFoundException.class)
+    public ResponseEntity<ResponseBody> handleTaskNotFoundException(TaskNotFoundException e, HttpServletRequest request){
+        ResponseBody response = new ResponseBody(HttpStatus.NOT_FOUND.value(),
+                request.getRequestURL().toString(),
+                e.getMessage());
+
+        return ResponseEntity.status( HttpStatus.NOT_FOUND).body(response);
+    }
+    @ExceptionHandler(TaskIdNotFoundException.class)
+    public ResponseEntity<ResponseBody> handleTaskIdNotFoundException(TaskIdNotFoundException e, HttpServletRequest request){
+        ResponseBody response = new ResponseBody(HttpStatus.NOT_FOUND.value(),
+                request.getRequestURL().toString(),
+                e.getMessage());
+
+        return ResponseEntity.status( HttpStatus.NOT_FOUND).body(response);
+    }
 }

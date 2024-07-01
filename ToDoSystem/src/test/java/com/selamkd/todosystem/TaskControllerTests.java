@@ -37,7 +37,7 @@ public class TaskControllerTests {
                       .content("""
                               { \
                               "title": "Udemy OOP course",
-                              "description": "Watch Udemy OOP course, take quiz and build the workbook project",
+                              "description": "Watch Udemy OOP course, take quiz and build  workbook project",
                               "status": "PENDING",
                               "users": []\
                               }""")

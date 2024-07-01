@@ -83,9 +83,9 @@ public class TaskServiceTests {
         when(taskRepository.findById(1)).thenReturn(Optional.of(task1));
         when(taskRepository.findById(2)).thenReturn(Optional.of(task2));
 
-        Optional<Task> task = taskService.getTaskById(1);
+        Optional<Task> task = taskService.getTaskById("1");
         Assertions.assertTrue(task.isPresent());
-        Assertions.assertNotNull(taskService.getTaskById(2));
+        Assertions.assertNotNull(taskService.getTaskById("2"));
 
         Assertions.assertEquals("Task 1 test title", task.get().getTitle());
 
@@ -108,7 +108,7 @@ public class TaskServiceTests {
         when(taskRepository.findById(1)).thenReturn(Optional.of(existingTask));
         when(taskRepository.save(existingTask)).thenReturn(updatedTask);
 
-        Task savedTask = taskService.updateTask(1, updatedTask);
+        Task savedTask = taskService.updateTask("1", updatedTask);
 
         Assertions.assertNotNull(savedTask);
 
@@ -127,7 +127,7 @@ public class TaskServiceTests {
 
         when(taskRepository.findById(1)).thenReturn(Optional.of(task));
         taskRepository.deleteById(1);
-        boolean deleted = taskService.deleteTaskById(1);
+        boolean deleted = taskService.deleteTaskById("1");
 
         Assertions.assertTrue(deleted);
 
@@ -199,7 +199,7 @@ public class TaskServiceTests {
 
         when(taskRepository.findByUsers_Id(1)).thenReturn(List.of(task1, task2));
 
-        List<Task> foundTasks = taskService.findTaskByUserId(1);
+        List<Task> foundTasks = taskService.findTaskByUserId("1");
 
         Assertions.assertNotNull(foundTasks);
         Assertions.assertEquals(2, foundTasks.size());

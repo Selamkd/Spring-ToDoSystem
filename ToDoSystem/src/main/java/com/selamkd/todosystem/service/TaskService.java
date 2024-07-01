@@ -10,13 +10,15 @@ public interface TaskService {
 
     List<Task> getAllTasks();
 
-    Optional<Task> getTaskById(Integer id);
+    Task updateTask(String taskId, Task task);
 
-    boolean deleteTaskById(Integer id);
+    Optional<Task> getTaskById(String id);
+
+    boolean deleteTaskById(String id);
 
     List<Task> findTaskByTitle(String title);
 
-    List<Task> findTaskByUserId(Integer userId);
+    List<Task> findTaskByUserId(String userId);
 
     List<Task> findTaskByUserName(String userName);
 
