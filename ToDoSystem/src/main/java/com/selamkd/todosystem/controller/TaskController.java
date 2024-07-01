@@ -43,7 +43,7 @@ public class TaskController {
     }
 
     @GetMapping("/task/{taskId}")
-    public Optional<Task> getTaskById(@PathVariable String taskId) throws TaskIdNotFoundException {
+    public Optional<Task> getTaskById(@PathVariable String taskId) throws TaskIdNotFoundException, TasksNotFoundException {
         if (taskId == null || taskId.isEmpty()) {
             throw new TaskIdNotFoundException(taskId);
         }
@@ -53,7 +53,7 @@ public class TaskController {
 
 
     @PutMapping("task/{taskId}")
-    public Task updateTask(@PathVariable String taskId, @RequestBody Task task) throws TaskBodyNotFoundException, TaskIdNotFoundException {
+    public Task updateTask(@PathVariable String taskId, @RequestBody Task task) throws TaskBodyNotFoundException, TaskIdNotFoundException, TasksNotFoundException {
         Optional<Task> taskToUpdate = taskService.getTaskById(taskId);
         if (task == null) {
             throw new TaskBodyNotFoundException();
