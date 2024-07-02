@@ -37,7 +37,7 @@ public class TaskServiceImp implements TaskService {
         }
     }
 
-    public List<Task> getAllTasks() {
+    public  List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
