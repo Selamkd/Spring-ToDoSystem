@@ -1,24 +1,101 @@
-# Logs
-logs
-*.log
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Vite cache
+.vite/
+.vite-cache/
+
+# Log files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependency directories
+jspm_packages/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Local environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# MacOS files
 .DS_Store
+
+# IDE/Editor directories and files
+.idea/
+.vscode/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm/
+
+# Miscellaneous
+*.swp
+*.lock
+*.log
+*.log.*
+
+# Coverage directory used by testing tools
+coverage/
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variable files
+.env.*
+
+# Parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Storybook files
+out/
+storybook-static/
+
+# SvelteKit build artifacts
+.svelte-kit/
+
+# VS Code settings
+.vscode/
+
+# Next.js build output
+.next/
+
+# Nuxt.js build output
+.nuxt/
+
+# Nuxt.js generate output
+dist/
+
+# Gatsby files
+.cache/
+public/
+
+# Expo files
+.expo/
+.expo-shared/
+
+# Docusaurus
+.build/
+
+# ESLint cache
+.eslintcache
+
+# Temporary files
+tmp/
+temp/
