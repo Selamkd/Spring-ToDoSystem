@@ -13,10 +13,6 @@ public class ToDoSystemApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ToDoSystemApplication.class, args);
-
-        List<Task> tasks =TaskServiceImp.getAllTasks();
-
-        System.out.println(tasks);
     }
 
 }

@@ -6,6 +6,7 @@ import com.selamkd.todosystem.model.exceptions.TaskIdNotFoundException;
 import com.selamkd.todosystem.model.exceptions.TaskNotFoundException;
 import com.selamkd.todosystem.model.exceptions.TasksNotFoundException;
 import com.selamkd.todosystem.service.TaskService;
+import com.selamkd.todosystem.service.TaskServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +17,13 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class TaskController {
 
-    private final TaskService taskService;
+    private final TaskServiceImp taskService;
+
 
     @Autowired
-    public TaskController(TaskService taskService) {
+    public TaskController(TaskServiceImp  taskService) {
         this.taskService = taskService;
+
     }
 
     @PostMapping("task")
