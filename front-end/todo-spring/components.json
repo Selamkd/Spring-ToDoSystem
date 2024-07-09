@@ -5,7 +5,7 @@
   "tsx": false,
   "tailwind": {
     "config": "todo-spring/tailwind.config.js",
-    "css": "styles/App.css",
+    "css": "./styles/global.css",
     "baseColor": "slate",
     "cssVariables": false,
     "prefix": ""
