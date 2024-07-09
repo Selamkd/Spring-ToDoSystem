@@ -3,7 +3,7 @@ import '../styles/App.css';
 const Header = () => {
   return (
     <header className="top-0 fixed border-b-2 border-gray-400 w-full py-2">
-      <p>I'm a header</p>
+      <p>Header element</p>
     </header>
   );
 };

@@ -5,13 +5,17 @@ import InputForm from './InputForm';
 import TaskList from './TasksList';
 function App() {
   return (
-    <div>
+    <>
       <Header />
-      <section className="flex flex-row">
-        <InputForm />
-        <TaskList />
+      <section className="grid grid-cols-2 py-10">
+        <div className="flex flex-col p-4">
+          <InputForm />
+        </div>
+        <div className="flex flex-col items-end p-4">
+          <TaskList />
+        </div>
       </section>
-    </div>
+    </>
   );
 }
 
