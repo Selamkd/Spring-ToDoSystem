@@ -1,6 +1,7 @@
 import { Button } from './ui/button.jsx';
 import { Input } from './ui/input.jsx';
 import { Label } from './ui/label.jsx';
+import { FaPencilAlt } from 'react-icons/fa';
 import {
   Card,
   CardContent,
@@ -19,19 +20,27 @@ import {
 const InputForm = () => {
   return (
     <>
-      <Card className="w-[450px]">
+      <Card className="w-[650px] mt-7">
         <CardHeader>
-          <CardTitle>Add a new task</CardTitle>
-          <CardDescription>
-           Add tasks for today
-          </CardDescription>
+          <div className="p-1">
+            <CardTitle className="pb-1">Add a new task</CardTitle>
+            <CardDescription>Add tasks for today</CardDescription>
+          </div>
+          <div className="ml-2">
+            <FaPencilAlt className="ml-2 top-5" />
+          </div>
         </CardHeader>
+
         <CardContent>
           <form>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
+            <div className="grid w-full items-center gap-5">
+              <div className="flex flex-col space-y-2.5">
                 <Label htmlFor="name">Title</Label>
                 <Input id="name" placeholder="Add title" />
+              </div>
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="name">Description</Label>
+                <Input id="name" placeholder="Optional" />
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="framework">Status</Label>
@@ -50,8 +59,8 @@ const InputForm = () => {
           </form>
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Button variant="outline">Cancel</Button>
-          <Button>Deploy</Button>
+          <Button variant="outline">Outline</Button>
+          <Button>Add</Button>
         </CardFooter>
       </Card>
     </>

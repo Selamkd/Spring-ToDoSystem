@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { Button } from './ui/button.jsx';
 function TaskList() {
   const [tasks, setTasks] = useState([]);
 
@@ -18,6 +18,7 @@ function TaskList() {
   return (
     <div>
       <h1>Tasks</h1>
+      <Button variant="outline">Outline</Button>
       <ul>
         {tasks.map((task, index) => (
           <>
