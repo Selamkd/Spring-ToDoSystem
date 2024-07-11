@@ -59,8 +59,10 @@ const InputForm = () => {
           </form>
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Button variant="outline">Outline</Button>
-          <Button>Add</Button>
+          <button className="text-red-700 ml-2 hover:text-red-400 ">
+            Cancel
+          </button>
+          <Button variant="secondary">Add</Button>
         </CardFooter>
       </Card>
     </>

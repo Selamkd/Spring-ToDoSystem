@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from './ui/button.jsx';
+import { DatePickerWithRange } from './CalendarComponent.jsx';
 function TaskList() {
   const [tasks, setTasks] = useState([]);
 
@@ -16,9 +17,11 @@ function TaskList() {
   }, []);
 
   return (
-    <div>
-      <h1>Tasks</h1>
-      <Button variant="outline">Outline</Button>
+    <div className="flex flex-col ">
+      <section>
+        <DatePickerWithRange />
+      </section>
+
       <ul>
         {tasks.map((task, index) => (
           <>
