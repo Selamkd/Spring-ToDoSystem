@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import TestCss from './components/TestCss.jsx';
+import App from './components/App.jsx';
 import '../src/styles/index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <TestCss />
+    <App />
   </React.StrictMode>
 );
