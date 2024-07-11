@@ -1,8 +1,10 @@
-import '../styles/App.css';
+import '../styles/index.css';
 import Header from './Header';
 import InputForm from './InputForm';
 import TaskList from './TasksList';
-import { ThemeProvider } from './theme-provider.jsx';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+
 function App() {
   return (
     <div className="flex flex-col h-screen">
@@ -10,11 +12,11 @@ function App() {
         <Header />
       </section>
 
-      <section className="grid grid-cols-2 py-10 h-screen">
-        <div className="flex flex-col p-4 justify-start items-start border border-purple-500">
+      <section className="grid grid-cols-2 py-10 ml-5">
+        <div className="flex flex-col p-4 justify-start items-start">
           <InputForm />
         </div>
-        <div className="flex flex-col items-end p-4 border border-purple-500">
+        <div className="flex flex-col items-end p-4  ">
           <TaskList />
         </div>
       </section>
