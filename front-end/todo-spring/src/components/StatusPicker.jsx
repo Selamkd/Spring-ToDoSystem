@@ -14,20 +14,20 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 export function StatusPicker() {
-  const [position, setPosition] = React.useState('bottom');
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Status</Button>
+        <Button className="bg-input border border-zinc-500" variant="outline">
+          Status
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="Status">
         <DropdownMenuLabel>Task status</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          <DropdownMenuRadioItem value="">To do </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="bottom">Pending</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="right">Done</DropdownMenuRadioItem>
+        <DropdownMenuRadioGroup value={status}>
+          <DropdownMenuRadioItem value="to-do">To-do </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="pending">Pending</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="done">Done</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

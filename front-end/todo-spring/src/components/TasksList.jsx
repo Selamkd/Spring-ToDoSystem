@@ -16,7 +16,7 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from '@/components/ui/card'; // Adjust import according to your setup
+} from '@/components/ui/card';
 
 function TaskList() {
   const [tasks, setTasks] = useState([]);
@@ -35,7 +35,7 @@ function TaskList() {
 
   return (
     <div className="w-full flex justify-center">
-      <Card className="w-[80%] mt-7">
+      <Card className="w-[90%] mt-7">
         <CardHeader>
           <div className="p-1 display flex justify-between">
             <div>
@@ -53,24 +53,28 @@ function TaskList() {
             {tasks.map((task, index) => {
               // Ensure createdAt is a Date object
               const createdAt = new Date(task.createdAt);
-              const humanReadableDate = createdAt
+
+              const formattedDate = createdAt
                 .toLocaleDateString()
                 .replace(/\//g, '-');
-              const humanReadableTime = createdAt.toLocaleTimeString();
 
               return (
                 <Accordion type="single" collapsible key={index}>
                   <AccordionItem value={`item-${index}`}>
                     <AccordionTrigger className="flex justify-between gap-8">
-                      <Checkbox />
-                      <li>{task.title}</li>
+                      <li>
+                        <Checkbox className="mr-3 mt-3" />
+                        {task.title}
+                      </li>
                       <Badge className="text-gray-500" variant="outline">
                         {task.status}
                       </Badge>
-                      <span className="text-gray-500">{humanReadableDate}</span>
+                      <span className="text-muted-foreground">
+                        {formattedDate}
+                      </span>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <li className="flex justify-start ml-16">
+                      <li className="flex justify-start  text-muted-foreground">
                         {task.description}
                       </li>
                     </AccordionContent>

@@ -12,12 +12,12 @@ function App() {
         <Header />
       </section>
 
-      <section className="grid grid-cols-2 py-10 ml-5">
-        <div className="flex flex-col p-4 justify-start items-start">
-          <InputForm />
-        </div>
-        <div className="flex flex-col items-end p-4  ">
+      <section className="grid grid-cols-2 py-10 ml-5 h-screen">
+        <div className="flex flex-col p-4 justify-start items-start pr-6 mr-5">
           <TaskList />
+        </div>
+        <div className="flex flex-col justify-start items-center p-4 mt-2">
+          <InputForm />
         </div>
       </section>
     </div>
