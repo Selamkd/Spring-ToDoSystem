@@ -20,7 +20,7 @@ import {
 const InputForm = () => {
   return (
     <>
-      <Card className="w-[650px] mt-7">
+      <Card className="w-[80%] mt-7">
         <CardHeader>
           <div className="p-1">
             <CardTitle className="pb-1">Add a new task</CardTitle>

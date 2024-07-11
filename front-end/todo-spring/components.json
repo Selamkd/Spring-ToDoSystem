@@ -5,13 +5,13 @@
   "tsx": false,
   "tailwind": {
     "config": "todo-spring/tailwind.config.js",
-    "css": "./styles/global.css",
+    "css": "todo-spring/src/styles/index.css",
     "baseColor": "slate",
     "cssVariables": false,
     "prefix": ""
   },
   "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils"
+    "components": "../components",
+    "utils": "../lib/utils"
   }
 }
