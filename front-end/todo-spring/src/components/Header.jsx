@@ -1,9 +1,11 @@
 import "@/styles/App.css";
+import "@/styles/index.css";
 import UserAvatar from "@/components/UserAvatar";
 import { useState, useEffect } from "react";
-import { BsMusicNoteList } from "react-icons/bs";
+import { SiItunes } from "react-icons/si";
 import { TbSunOff } from "react-icons/tb";
 import { TbSunHigh } from "react-icons/tb";
+import { CiMusicNote1 } from "react-icons/ci";
 import LofiComponent from "@/components/LofiComponent";
 const Header = () => {
   const [theme, setTheme] = useState("light");
@@ -37,14 +39,19 @@ const Header = () => {
           ) : (
             <TbSunHigh
               onClick={handleThemeChange}
-              className="text-gray-800 text-3xl mr-8 hover:text-gray-600 dark:text-gray-50"
+              className="text-gray-800 text-3xl mr-8 hover:text-gray-700 dark:text-gray-50"
             />
           )}
 
-          <BsMusicNoteList
-            onclick={handleOpenDialog}
-            className="text-gray-800 text-2xl ml-5 mt-1 hover:text-gray-600 dark:text-gray-50"
+          <SiItunes
+            onClick={handleOpenDialog}
+            className="text-gray-800 text-3xl ml-3  hover:text-gray-700 dark:text-gray-50"
           />
+          {openDialog ? (
+            <div className="bg-gray-200 h-[60%] ">
+              <LofiComponent />
+            </div>
+          ) : null}
         </div>
         <UserAvatar />
       </div>

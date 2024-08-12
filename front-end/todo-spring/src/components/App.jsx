@@ -10,10 +10,6 @@ function App() {
       <header>
         <Header />
       </header>
-
-      <div className="bg-gray-200 h-[60%] ">
-        <LofiComponent />
-      </div>
     </div>
   );
 }
