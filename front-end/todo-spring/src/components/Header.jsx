@@ -24,7 +24,7 @@ const Header = () => {
   });
 
   return (
-    <header className="w-screen bg-gray-100 z-10 border-2 border-gray-200 flex justify-between px-4 py-3 dark:bg-dark-bg">
+    <header className="w-screen bg-gray-100 z-10 border-2 border-gray-200 dark:border-dark-bg flex justify-between px-4 py-3 dark:bg-dark-bg">
       <img src="../public/optimization.png" className="w-14 h-14" />
 
       <div className="flex justify-center">
