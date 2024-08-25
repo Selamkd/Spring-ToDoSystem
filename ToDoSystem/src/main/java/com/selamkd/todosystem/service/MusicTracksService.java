@@ -2,10 +2,11 @@ package com.selamkd.todosystem.service;
 
 import com.selamkd.todosystem.model.entities.MusicTrack;
 import com.selamkd.todosystem.model.repositories.MusicTrackRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class MusicTracksService {
     private final MusicTrackRepository musicRepository;
 
