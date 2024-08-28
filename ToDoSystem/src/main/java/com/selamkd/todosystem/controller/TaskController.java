@@ -1,11 +1,11 @@
 package com.selamkd.todosystem.controller;
 
 import com.selamkd.todosystem.model.entities.Task;
-import com.selamkd.todosystem.model.exceptions.TaskBodyNotFoundException;
+import com.selamkd.todosystem.model.exceptions.ListNotFoundException;
+import com.selamkd.todosystem.model.exceptions.RequestBodyNotFoundException;
 import com.selamkd.todosystem.model.exceptions.TaskIdNotFoundException;
 import com.selamkd.todosystem.model.exceptions.TaskNotFoundException;
 import com.selamkd.todosystem.model.exceptions.TasksNotFoundException;
-import com.selamkd.todosystem.service.TaskService;
 import com.selamkd.todosystem.service.TaskServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,9 +27,9 @@ public class TaskController {
     }
 
     @PostMapping("task")
-    public String addTask(@RequestBody Optional<Task> task) throws TaskBodyNotFoundException {
+    public String addTask(@RequestBody Optional<Task> task) throws  RequestBodyNotFoundException {
         if (task.isEmpty()) {
-            throw new TaskBodyNotFoundException();
+            throw new RequestBodyNotFoundException("Task body not missing from request.Please check your input and try again");
         } else {
             taskService.saveTask(task.get());
             return "Task added successfully";
@@ -37,10 +37,10 @@ public class TaskController {
     }
 
     @GetMapping("/tasks")
-    public List<Task> getAllTasks() throws TasksNotFoundException {
+    public List<Task> getAllTasks() throws ListNotFoundException {
         List<Task> tasks = taskService.getAllTasks();
         if (tasks.isEmpty()) {
-            throw new TasksNotFoundException();
+            throw new ListNotFoundException("There are no tasks available at the moment. Please try again later.");
         }
         return tasks;
     }
@@ -56,10 +56,10 @@ public class TaskController {
 
 
     @PutMapping("task/{taskId}")
-    public Task updateTask(@PathVariable String taskId, @RequestBody Task task) throws TaskBodyNotFoundException, TaskIdNotFoundException, TasksNotFoundException {
+    public Task updateTask(@PathVariable String taskId, @RequestBody Task task) throws TaskIdNotFoundException, TasksNotFoundException, RequestBodyNotFoundException {
         Optional<Task> taskToUpdate = taskService.getTaskById(taskId);
         if (task == null) {
-            throw new TaskBodyNotFoundException();
+            throw new RequestBodyNotFoundException("Task body not missing from request.Please check your input and try again");
         }
         if (taskToUpdate.isEmpty()) {
             throw new TaskIdNotFoundException(taskId);
