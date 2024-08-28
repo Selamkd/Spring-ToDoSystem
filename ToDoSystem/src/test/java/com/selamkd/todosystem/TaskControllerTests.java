@@ -6,6 +6,7 @@ import com.selamkd.todosystem.model.entities.Task;
 import com.selamkd.todosystem.model.exceptions.TaskIdNotFoundException;
 import com.selamkd.todosystem.model.exceptions.TasksNotFoundException;
 import com.selamkd.todosystem.service.TaskService;
+import com.selamkd.todosystem.service.TaskServiceImp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ public class TaskControllerTests {
     private MockMvc mockMvc;
     //Wires a mock instance of TaskService into the Spring context
     @MockBean
-    private TaskService taskService;
+    private TaskServiceImp taskService;
 
     @Test
     @DisplayName("Check that adding a new task returns 'Task added successfully'")
@@ -116,33 +117,33 @@ public class TaskControllerTests {
         ObjectMapper objectMapper = new ObjectMapper();
         String expectedJsonResponse = objectMapper.writeValueAsString(task1);
 
-      when(taskService.getTaskById("1")).thenReturn(Optional.of(task1));
-      when(taskService.getTaskById("2")).thenReturn(Optional.of(task2));
+        when(taskService.getTaskById("1")).thenReturn(Optional.of(task1));
+        when(taskService.getTaskById("2")).thenReturn(Optional.of(task2));
 
-      mockMvc.perform(MockMvcRequestBuilders.get("/api/task/1")
-              .contentType("application/json"))
-              .andExpect(MockMvcResultMatchers.status().isOk())
-              .andExpect(MockMvcResultMatchers.content().json(expectedJsonResponse));
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/task/1")
+                        .contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(expectedJsonResponse));
 
 
     }
 
 
 
-  @Test
-  @DisplayName("Given no ID should return TaskIDNotFoundException")
-  void givenNoIdShouldReturnTaskIdNotFoundException() throws Exception {
+    @Test
+    @DisplayName("Given no ID should return TaskIDNotFoundException")
+    void givenNoIdShouldReturnTaskIdNotFoundException() throws Exception {
 
         when(taskService.getTaskById("-")).thenThrow( new TaskIdNotFoundException("-"));
 
-      mockMvc.perform(MockMvcRequestBuilders.get("/api/task/-")
-                      .contentType("application/json"))
-              .andExpect(MockMvcResultMatchers.status().isNotFound())
-              .andExpect(result -> Assertions.assertInstanceOf(TaskIdNotFoundException.class, result.getResolvedException()))
-              .andExpect(result -> Assertions.assertEquals("Task with ID " + "-" + " not found. Please check the ID and try again.", Objects.requireNonNull(result.getResolvedException()).getMessage()));
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/task/-")
+                        .contentType("application/json"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(result -> Assertions.assertInstanceOf(TaskIdNotFoundException.class, result.getResolvedException()))
+                .andExpect(result -> Assertions.assertEquals("Task with ID " + "-" + " not found. Please check the ID and try again.", Objects.requireNonNull(result.getResolvedException()).getMessage()));
 
 
-  }
+    }
 
 
 

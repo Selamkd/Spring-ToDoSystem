@@ -61,8 +61,8 @@ public class TaskServiceTests {
         List<Task> tasks = taskService.getAllTasks();
         Assertions.assertNotNull(tasks);
         Assertions.assertEquals(2, tasks.size());
-        Assertions.assertEquals(task1, tasks.getFirst());
-        Assertions.assertEquals(task2, tasks.getLast());
+        Assertions.assertEquals(task1.getTitle(), tasks.get(0).getTitle());
+        Assertions.assertEquals(task2.getTitle(), tasks.get(tasks.size() - 1).getTitle());
 
 
     }
@@ -146,8 +146,8 @@ public class TaskServiceTests {
         System.out.println(tasks);
         Assertions.assertNotNull(tasks);
         Assertions.assertEquals(2, tasks.size());
-        Assertions.assertEquals(task1.getTitle(), tasks.getFirst().getTitle());
-        Assertions.assertEquals(task2.getTitle(), tasks.getLast().getTitle());
+        Assertions.assertEquals(task1.getTitle(), tasks.get(0).getTitle());
+        Assertions.assertEquals(task2.getTitle(), tasks.get(tasks.size() - 1).getTitle());
 
 
     }
@@ -176,8 +176,8 @@ public class TaskServiceTests {
 
         Assertions.assertEquals(2, foundTasks.size());
 
-        Assertions.assertEquals(task1.getTitle(), foundTasks.getFirst().getTitle());
-        Assertions.assertEquals(task2.getTitle(), foundTasks.getLast().getTitle());
+        Assertions.assertEquals(task1.getTitle(), foundTasks.get(0).getTitle());
+        Assertions.assertEquals(task2.getTitle(), foundTasks.get(foundTasks.size() - 1).getTitle());
 
     }
 
@@ -203,7 +203,7 @@ public class TaskServiceTests {
 
         Assertions.assertNotNull(foundTasks);
         Assertions.assertEquals(2, foundTasks.size());
-        Assertions.assertEquals(task1.getTitle(), foundTasks.getFirst().getTitle());
+        Assertions.assertEquals(task1.getTitle(), foundTasks.get(0).getTitle());
     }
 
 
