@@ -39,7 +39,7 @@ public class MusicTracksService {
         return musicRepository.findById(Integer.valueOf(id));
     }
 
-    public String deleteTasksById(String id){
+    public String deleteTrackById(String id){
         Optional<MusicTrack>  trackToDelete = musicRepository.findById(Integer.valueOf(id));
         if(trackToDelete.isPresent()){
             musicRepository.delete(trackToDelete.get());

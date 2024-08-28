@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.when;
@@ -66,5 +68,64 @@ public class MusicTrackServiceTests {
 
     }
 
+    @Test
+    @DisplayName("get all tracks returns all the tracks available in music_tracks table")
+    void getAllTracksReturnsAllTheTracksAvailableInMusicTracksTable() {
+
+        MusicTrack track1 = new MusicTrack();
+        track1.setArtistName("Selam K");
+        track1.setTrackLink("https://intlanthem.bandcamp.com/");
+        MusicTrack track2 = new MusicTrack();
+        track1.setArtistName("Selam A");
+        track1.setTrackLink("https://intlanthem.bandcamp.com/visit-croatia");
+
+
+        when(trackRepository.findAll()).thenReturn(Arrays.asList(track1, track2));
+        List<MusicTrack> tracks = trackService.getAllTracks();
+
+        Assertions.assertNotNull(tracks);
+        Assertions.assertEquals(2, tracks.size());
+        Assertions.assertEquals(track1.getArtistName(), tracks.get(0).getArtistName());
+        Assertions.assertEquals(track2.getTrackLink(), tracks.get(tracks.size() - 1).getTrackLink());
+    }
+
+
+    @Test
+    @DisplayName("get track by id should return a track with a matching id")
+    void getTrackByIdShouldReturnATrackWithAMatchingId() {
+
+        MusicTrack track1 = new MusicTrack();
+        track1.setArtistName("Selam K");
+        track1.setTrackLink("https://intlanthem.bandcamp.com/");
+        MusicTrack track2 = new MusicTrack();
+        track1.setArtistName("Selam A");
+        track1.setTrackLink("https://intlanthem.bandcamp.com/visit-croatia");
+
+        when(trackRepository.findById(1)).thenReturn(Optional.of(track1));
+        when(trackRepository.findById(2)).thenReturn(Optional.of(track2));
+
+        Optional<MusicTrack> foundTrackById = trackService.getTrackById("1");
+        Assertions.assertTrue(foundTrackById.isPresent());
+        Assertions.assertEquals(track1.getTrackLink(), foundTrackById.get().getTrackLink());
+
+    }
+
+
+    @Test
+    @DisplayName("Delete track by id successfully deletes a track from the music_tracks table")
+    void deleteTrackByIdSuccessfullyDeletesATrackFromTheMusicTracksTable() {
+
+        MusicTrack track1 = new MusicTrack();
+        track1.setArtistName("Selam K");
+        track1.setTrackLink("https://intlanthem.bandcamp.com/");
+
+        when(trackRepository.findById(1)).thenReturn(Optional.of(track1));
+        trackRepository.deleteById(1);
+        String deletedTrack = trackService.deleteTrackById("1");
+
+        Assertions.assertEquals(deletedTrack, "Track deleted successfully");
+
+
+    }
 
 }
