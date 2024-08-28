@@ -3,7 +3,6 @@ package com.selamkd.todosystem.controller;
 import com.selamkd.todosystem.model.entities.MusicTrack;
 import com.selamkd.todosystem.model.exceptions.ListNotFoundException;
 import com.selamkd.todosystem.model.exceptions.RequestBodyNotFoundException;
-import com.selamkd.todosystem.model.exceptions.TasksNotFoundException;
 import com.selamkd.todosystem.service.MusicTracksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

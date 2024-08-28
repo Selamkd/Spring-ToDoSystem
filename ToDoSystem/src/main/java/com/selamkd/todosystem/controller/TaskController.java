@@ -5,7 +5,6 @@ import com.selamkd.todosystem.model.exceptions.ListNotFoundException;
 import com.selamkd.todosystem.model.exceptions.RequestBodyNotFoundException;
 import com.selamkd.todosystem.model.exceptions.TaskIdNotFoundException;
 import com.selamkd.todosystem.model.exceptions.TaskNotFoundException;
-import com.selamkd.todosystem.model.exceptions.TasksNotFoundException;
 import com.selamkd.todosystem.service.TaskServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +45,7 @@ public class TaskController {
     }
 
     @GetMapping("/task/{taskId}")
-    public Optional<Task> getTaskById(@PathVariable String taskId) throws TaskIdNotFoundException, TasksNotFoundException {
+    public Optional<Task> getTaskById(@PathVariable String taskId) throws TaskIdNotFoundException {
         if (taskId == null || taskId.isEmpty()) {
             throw new TaskIdNotFoundException(taskId);
         }
@@ -56,7 +55,7 @@ public class TaskController {
 
 
     @PutMapping("task/{taskId}")
-    public Task updateTask(@PathVariable String taskId, @RequestBody Task task) throws TaskIdNotFoundException, TasksNotFoundException, RequestBodyNotFoundException {
+    public Task updateTask(@PathVariable String taskId, @RequestBody Task task) throws TaskIdNotFoundException, RequestBodyNotFoundException {
         Optional<Task> taskToUpdate = taskService.getTaskById(taskId);
         if (task == null) {
             throw new RequestBodyNotFoundException("Task body not missing from request.Please check your input and try again");
