@@ -3,7 +3,7 @@ package com.selamkd.todosystem.controller;
 import com.selamkd.todosystem.model.entities.Task;
 import com.selamkd.todosystem.model.exceptions.ListNotFoundException;
 import com.selamkd.todosystem.model.exceptions.RequestBodyNotFoundException;
-import com.selamkd.todosystem.model.exceptions.TaskIdNotFoundException;
+import com.selamkd.todosystem.model.exceptions.IdNotFoundException;
 import com.selamkd.todosystem.model.exceptions.TaskNotFoundException;
 import com.selamkd.todosystem.service.TaskServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +45,9 @@ public class TaskController {
     }
 
     @GetMapping("/task/{taskId}")
-    public Optional<Task> getTaskById(@PathVariable String taskId) throws TaskIdNotFoundException {
+    public Optional<Task> getTaskById(@PathVariable String taskId) throws IdNotFoundException {
         if (taskId == null || taskId.isEmpty()) {
-            throw new TaskIdNotFoundException(taskId);
+            throw new IdNotFoundException(taskId);
         }
 
         return taskService.getTaskById(taskId);
@@ -55,13 +55,13 @@ public class TaskController {
 
 
     @PutMapping("task/{taskId}")
-    public Task updateTask(@PathVariable String taskId, @RequestBody Task task) throws TaskIdNotFoundException, RequestBodyNotFoundException {
+    public Task updateTask(@PathVariable String taskId, @RequestBody Task task) throws IdNotFoundException, RequestBodyNotFoundException {
         Optional<Task> taskToUpdate = taskService.getTaskById(taskId);
         if (task == null) {
             throw new RequestBodyNotFoundException("Task body not missing from request.Please check your input and try again");
         }
         if (taskToUpdate.isEmpty()) {
-            throw new TaskIdNotFoundException(taskId);
+            throw new IdNotFoundException(taskId);
         }
         return taskService.updateTask(taskId, task);
 
@@ -69,9 +69,9 @@ public class TaskController {
     }
 
     @DeleteMapping("task/{taskId}")
-    public String deleteTaskById(@PathVariable String taskId) throws TaskIdNotFoundException {
+    public String deleteTaskById(@PathVariable String taskId) throws IdNotFoundException {
         if (taskId == null || taskId.isEmpty()) {
-            throw new TaskIdNotFoundException(taskId);
+            throw new IdNotFoundException(taskId);
         }
 
         taskService.deleteTaskById(taskId);

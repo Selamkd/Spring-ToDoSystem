@@ -1,6 +1,7 @@
 package com.selamkd.todosystem.controller;
 
 import com.selamkd.todosystem.model.entities.MusicTrack;
+import com.selamkd.todosystem.model.exceptions.IdNotFoundException;
 import com.selamkd.todosystem.model.exceptions.ListNotFoundException;
 import com.selamkd.todosystem.model.exceptions.RequestBodyNotFoundException;
 import com.selamkd.todosystem.service.MusicTracksService;
@@ -38,5 +39,16 @@ public class MusicTrackController {
            throw new ListNotFoundException("There are no tracks available at the moment. Please try again later");
        }
        return allTracks;
+    }
+
+
+
+    @GetMapping("/track/{trackId}")
+    public Optional<MusicTrack> getTrackByID(@PathVariable String trackId) throws IdNotFoundException {
+         if(trackId == null || trackId.isEmpty()){
+             throw new IdNotFoundException("Track with ID: " + trackId + " not found. Please check your input and try again later.");
+         };
+
+         return trackService.getTrackById(trackId);
     }
 }
