@@ -30,14 +30,14 @@ function LofiComponent() {
     <div className="bg-white rounded-lg my-4 shadow-lg overflow-hidden w-full max-w-xs  dark:bg-dark-bg absolute right-9 top-20 ">
       <audio
         ref={audioRef}
-        src="https://stream-170.zeno.fm/9oywvyaa76nuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiI5b3l3dnlhYTc2bnV2IiwiaG9zdCI6InN0cmVhbS0xNzAuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6IjZQaGJSRE5wU01TdlBxWmpzWVA4c3ciLCJpYXQiOjE3MjUzOTA3NTgsImV4cCI6MTcyNTM5MDgxOH0.AaXCC7u4KKBbkVpt13mpeYFU8BEmc0GlbXFZlbQKzGw"
+        src="https://live.proradiosonline.com/listen/lofi_radio/aac"
       />
       <div className="flex justify-between">
         <span className="text-muted-foreground text-sm px-2 py-2 roboto dark:text-foreground-muted">
           Lofi beats to relax/study to
         </span>
-        <span className="text-muted-foreground text-sm px-2 py-2 roboto dark:text-foreground-muted">
-          radio.net
+        <span className="text-muted-foreground text-1xl px-2 py-2 roboto dark:text-foreground-muted">
+          🌆
         </span>
       </div>
       <div className="p-1 flex items-center justify-between">
