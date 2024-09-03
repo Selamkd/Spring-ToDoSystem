@@ -11,25 +11,20 @@ import "@/styles/index.css";
 function LofiComponent() {
   const [currentTrack, setCurrentTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [currentMinute, setCurrentMinute] = useState(0);
   const audioRef = useRef(null);
 
   useEffect(() => {
-    try {
-      fetchMusicTracks().then((data) => {
-        setCurrentTrack(data[0]);
-      });
-    } catch (e) {
-      console.error("Failed to fetch track links from the server" + e);
+    async function fetchTrack() {
+      try {
+        const response = await fetchMusicTracks();
+        setCurrentTrack(response[0]);
+        console.log(currentTrack);
+      } catch (e) {
+        console.error("Failed to fetch track links from the server" + e);
+      }
     }
-  });
-
-  useEffect(() => {
-    if (currentTrack && audioRef.current) {
-      audioRef.current.src = currentTrack.url;
-    }
-  }, [currentTrack]);
+    fetchTrack();
+  }, []);
 
   function handlePlayPause() {
     if (isPlaying) {
@@ -39,16 +34,13 @@ function LofiComponent() {
     }
     setIsPlaying(!isPlaying);
   }
-  function handleTimeUpdate(event) {
-    const currentTime = event.target.currentTime;
-    const duration = event.target.duration;
-    setProgress((currentTime / duration) * 100);
-    setCurrentMinute(currentTime);
-  }
 
   return (
     <div className="bg-white rounded-lg my-4 shadow-lg overflow-hidden w-full max-w-xs  dark:bg-dark-bg absolute right-9 top-20 ">
-      <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} />
+      <audio
+        ref={audioRef}
+        src="https://streams.fluxfm.de/Chillhop/mp3-128/streams.fluxfm.de/"
+      />
       <div className="flex justify-between">
         <span className="text-muted-foreground text-sm px-2 py-2 roboto dark:text-foreground-muted">
           Lofi beats for study
@@ -89,19 +81,10 @@ function LofiComponent() {
           </Button>
         </div>
         <div className="flex items-center gap-2 w-full px-4">
-          <Slider
-            className="w-full "
-            defaultValue={[currentMinute / progress] * 100}
-            max={100}
-            step={1}
-            onValueChange={handleTimeUpdate(event)}
-          />
+          <Slider className="w-full" max={100} step={1} />
         </div>
         <div className="text-sm text-muted-foreground flex justify-start px-2">
-          <span>
-            {new Date(currentMinute * 1000).toISOString().substr(14, 5)}
-            {new Date(progress * 1000).toISOString().substr(14, 5)}
-          </span>
+          <span></span>
         </div>
       </div>
     </div>

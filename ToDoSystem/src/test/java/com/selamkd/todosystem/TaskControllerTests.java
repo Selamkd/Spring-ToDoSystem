@@ -3,8 +3,9 @@ package com.selamkd.todosystem;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.selamkd.todosystem.controller.TaskController;
 import com.selamkd.todosystem.model.entities.Task;
-import com.selamkd.todosystem.model.exceptions.TaskIdNotFoundException;
-import com.selamkd.todosystem.model.exceptions.TasksNotFoundException;
+import com.selamkd.todosystem.model.exceptions.IdNotFoundException;
+import com.selamkd.todosystem.model.exceptions.IdNotFoundException;
+import com.selamkd.todosystem.model.exceptions.ListNotFoundException;
 import com.selamkd.todosystem.service.TaskService;
 import com.selamkd.todosystem.service.TaskServiceImp;
 import org.junit.jupiter.api.Assertions;
@@ -92,12 +93,12 @@ public class TaskControllerTests {
     @DisplayName("Check get all tasks throws TasksNotFound exception when there are no tasks")
     void checkGetAllTasksThrowsExceptionWhenNoTasks() throws Exception {
 
-        when(taskService.getAllTasks()).thenThrow( new TasksNotFoundException());
+        when(taskService.getAllTasks()).thenThrow( new IdNotFoundException("No "));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/tasks")
                         .contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
-                .andExpect(result -> Assertions.assertInstanceOf(TasksNotFoundException.class, result.getResolvedException()))
+                .andExpect(result -> Assertions.assertInstanceOf(ListNotFoundException.class, result.getResolvedException()))
                 .andExpect(result -> Assertions.assertEquals("There are no tasks available at the moment.", Objects.requireNonNull(result.getResolvedException()).getMessage()));
 
 
@@ -134,12 +135,12 @@ public class TaskControllerTests {
     @DisplayName("Given no ID should return TaskIDNotFoundException")
     void givenNoIdShouldReturnTaskIdNotFoundException() throws Exception {
 
-        when(taskService.getTaskById("-")).thenThrow( new TaskIdNotFoundException("-"));
+        when(taskService.getTaskById("-")).thenThrow( new IdNotFoundException("-"));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/task/-")
                         .contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
-                .andExpect(result -> Assertions.assertInstanceOf(TaskIdNotFoundException.class, result.getResolvedException()))
+                .andExpect(result -> Assertions.assertInstanceOf(IdNotFoundException.class, result.getResolvedException()))
                 .andExpect(result -> Assertions.assertEquals("Task with ID " + "-" + " not found. Please check the ID and try again.", Objects.requireNonNull(result.getResolvedException()).getMessage()));
 
 

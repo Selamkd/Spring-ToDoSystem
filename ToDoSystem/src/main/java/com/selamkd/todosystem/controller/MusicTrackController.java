@@ -47,7 +47,7 @@ public class MusicTrackController {
     public Optional<MusicTrack> getTrackByID(@PathVariable String trackId) throws IdNotFoundException {
          if(trackId == null || trackId.isEmpty()){
              throw new IdNotFoundException("Track with ID: " + trackId + " not found. Please check your input and try again later.");
-         };
+         }
 
          return trackService.getTrackById(trackId);
     }

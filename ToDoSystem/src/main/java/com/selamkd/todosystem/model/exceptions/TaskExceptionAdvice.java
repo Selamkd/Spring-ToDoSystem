@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class TaskExceptionAdvice {
 
-    @ExceptionHandler(TaskBodyNotFoundException.class)
-    public ResponseEntity<ResponseBody> handleTaskBodyNotFoundException(TaskBodyNotFoundException e, HttpServletRequest request){
+    @ExceptionHandler(RequestBodyNotFoundException.class)
+    public ResponseEntity<ResponseBody> handleTaskBodyNotFoundException(RequestBodyNotFoundException e, HttpServletRequest request){
         ResponseBody response = new ResponseBody(HttpStatus.NOT_FOUND.value(),
                 request.getRequestURL().toString(),
                 e.getMessage());
@@ -18,8 +18,8 @@ public class TaskExceptionAdvice {
         return ResponseEntity.status( HttpStatus.NOT_FOUND).body(response);
     }
 
-    @ExceptionHandler(TasksNotFoundException.class)
-    public ResponseEntity<ResponseBody> handleTasksNotFoundException(TasksNotFoundException e, HttpServletRequest request){
+    @ExceptionHandler(ListNotFoundException.class)
+    public ResponseEntity<ResponseBody> handleTasksNotFoundException(ListNotFoundException e, HttpServletRequest request){
         ResponseBody response = new ResponseBody(HttpStatus.NOT_FOUND.value(),
                 request.getRequestURL().toString(),
                 e.getMessage());
@@ -34,8 +34,8 @@ public class TaskExceptionAdvice {
 
         return ResponseEntity.status( HttpStatus.NOT_FOUND).body(response);
     }
-    @ExceptionHandler(TaskIdNotFoundException.class)
-    public ResponseEntity<ResponseBody> handleTaskIdNotFoundException(TaskIdNotFoundException e, HttpServletRequest request){
+    @ExceptionHandler(IdNotFoundException.class)
+    public ResponseEntity<ResponseBody> handleTaskIdNotFoundException(IdNotFoundException e, HttpServletRequest request){
         ResponseBody response = new ResponseBody(HttpStatus.NOT_FOUND.value(),
                 request.getRequestURL().toString(),
                 e.getMessage());

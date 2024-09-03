@@ -1,9 +1,8 @@
 import axios from "axios";
-export function fetchMusicTracks() {
+export async function fetchMusicTracks() {
   try {
-    const response = axios.get("https://localhost:8000/api/tracks");
-
-    if (!response.status !== 200) {
+    const response = await axios.get("http://localhost:8080/api/tracks");
+    if (response.status !== 200) {
       throw new Error("Failed to fetch track links from the server");
     }
     return response.data;
