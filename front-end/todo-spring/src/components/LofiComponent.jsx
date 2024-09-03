@@ -4,27 +4,14 @@ import { BsRewind } from "react-icons/bs";
 import { IoPlayOutline } from "react-icons/io5";
 import { IoPauseOutline } from "react-icons/io5";
 import { BsFastForward } from "react-icons/bs";
-import { useState, useEffect, useRef } from "react";
-import { fetchMusicTracks } from "@/utils/apiService";
+import { useState, useRef } from "react";
+
 import "@/styles/App.css";
 import "@/styles/index.css";
 function LofiComponent() {
-  const [currentTrack, setCurrentTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(null);
 
-  useEffect(() => {
-    async function fetchTrack() {
-      try {
-        const response = await fetchMusicTracks();
-        setCurrentTrack(response[0]);
-        console.log(currentTrack);
-      } catch (e) {
-        console.error("Failed to fetch track links from the server" + e);
-      }
-    }
-    fetchTrack();
-  }, []);
+  const audioRef = useRef(null);
 
   function handlePlayPause() {
     if (isPlaying) {
@@ -35,18 +22,22 @@ function LofiComponent() {
     setIsPlaying(!isPlaying);
   }
 
+  function handleSliderChange(value) {
+    const newTime = (value / 100) * audioRef.current.buffered.end(0);
+    audioRef.current.currentTime = newTime;
+  }
   return (
     <div className="bg-white rounded-lg my-4 shadow-lg overflow-hidden w-full max-w-xs  dark:bg-dark-bg absolute right-9 top-20 ">
       <audio
         ref={audioRef}
-        src="https://streams.fluxfm.de/Chillhop/mp3-128/streams.fluxfm.de/"
+        src="https://stream-170.zeno.fm/9oywvyaa76nuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiI5b3l3dnlhYTc2bnV2IiwiaG9zdCI6InN0cmVhbS0xNzAuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6IjZQaGJSRE5wU01TdlBxWmpzWVA4c3ciLCJpYXQiOjE3MjUzOTA3NTgsImV4cCI6MTcyNTM5MDgxOH0.AaXCC7u4KKBbkVpt13mpeYFU8BEmc0GlbXFZlbQKzGw"
       />
       <div className="flex justify-between">
         <span className="text-muted-foreground text-sm px-2 py-2 roboto dark:text-foreground-muted">
-          Lofi beats for study
+          Lofi beats to relax/study to
         </span>
         <span className="text-muted-foreground text-sm px-2 py-2 roboto dark:text-foreground-muted">
-          Meow Bands
+          radio.net
         </span>
       </div>
       <div className="p-1 flex items-center justify-between">
@@ -81,7 +72,13 @@ function LofiComponent() {
           </Button>
         </div>
         <div className="flex items-center gap-2 w-full px-4">
-          <Slider className="w-full" max={100} step={1} />
+          <Slider
+            className="w-full"
+            max={100}
+            step={1}
+            value={[80]}
+            onValueChange={handleSliderChange}
+          />
         </div>
         <div className="text-sm text-muted-foreground flex justify-start px-2">
           <span></span>

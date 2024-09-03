@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { SiItunes } from "react-icons/si";
 import { TbSunOff } from "react-icons/tb";
 import { TbSunHigh } from "react-icons/tb";
-import { CiMusicNote1 } from "react-icons/ci";
 import LofiComponent from "@/components/LofiComponent";
 const Header = () => {
   const [theme, setTheme] = useState("light");
