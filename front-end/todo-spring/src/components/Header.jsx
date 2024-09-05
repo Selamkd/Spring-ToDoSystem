@@ -10,14 +10,14 @@ const Header = () => {
   const [theme, setTheme] = useState("light");
   const [openDialog, setOpenDialog] = useState(false);
   function handleThemeChange() {
-    setTheme(theme == "light" ? "dark" : "light");
+    setTheme(theme === "light" ? "dark" : "light");
   }
   function handleOpenDialog() {
     setOpenDialog(!openDialog);
   }
 
   useEffect(() => {
-    if (theme == "light") {
+    if (theme === "light") {
       document.documentElement.classList.remove("dark");
     } else {
       document.documentElement.classList.add("dark");
@@ -25,27 +25,33 @@ const Header = () => {
   });
 
   return (
-    <header className="w-screen bg-gray-100 z-10 border-2 border-gray-200 dark:border-dark-bg flex justify-between px-4 py-3 dark:bg-dark-bg">
-      <img src="../public/optimization.png" className="w-14 h-14" />
+    <header className="w-screen z-10 border-2 border-gray-200 dark:border-dark-bg flex justify-between px-4 py-3 dark:bg-dark-bg">
+      <img src="/optimization.png" className="w-14 h-14" alt="logo" />
 
       <div className="flex justify-center">
-        <div className="flex mt-5 mr-12">
-          {theme == "light" ? (
+        <div className="flex mt-2 mr-12">
+          {theme === "light" ? (
             <TbSunOff
               onClick={handleThemeChange}
-              className="text-gray-800 text-3xl mr-8 hover:text-gray-600 dark:text-gray-200"
+              className="text-gray-800 text-5xl mr-8 hover:text-gray-600 dark:text-gray-200 bg-gray-100 rounded-3xl p-3"
             />
           ) : (
             <TbSunHigh
               onClick={handleThemeChange}
-              className="text-gray-800 text-3xl mr-8 hover:text-gray-700 dark:text-gray-50"
+              className="text-gray-800 text-5xl mr-8 hover:text-gray-700 dark:text-gray-50  bg-gray-700 rounded-3xl p-3"
             />
           )}
+          {theme === "light" ? (
+              <SiItunes
+                  onClick={handleOpenDialog}
+                  className="text-gray-800 text-5xl ml-3  hover:text-gray-700 dark:text-gray-50 bg-gray-100 rounded-3xl p-3"
+              /> ) :(
+              <SiItunes
+                  onClick={handleOpenDialog}
+                  className="text-gray-800 text-5xl ml-3  hover:text-gray-700 dark:text-gray-50 bg-gray-700 rounded-3xl p-3"
+              />
+          )}
 
-          <SiItunes
-            onClick={handleOpenDialog}
-            className="text-gray-800 text-3xl ml-3  hover:text-gray-700 dark:text-gray-50"
-          />
           {openDialog ? (
             <div className="bg-gray-200 h-[60%] ">
               <LofiComponent />
