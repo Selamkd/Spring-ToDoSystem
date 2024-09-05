@@ -6,6 +6,8 @@ import { SiItunes } from "react-icons/si";
 import { TbSunOff } from "react-icons/tb";
 import { TbSunHigh } from "react-icons/tb";
 import LofiComponent from "@/components/LofiComponent";
+import SearchCommand from "@/components/SearchCommand.jsx"
+
 const Header = () => {
   const [theme, setTheme] = useState("light");
   const [openDialog, setOpenDialog] = useState(false);
@@ -27,8 +29,9 @@ const Header = () => {
   return (
     <header className="w-screen z-10 border-2 border-gray-200 dark:border-dark-bg flex justify-between px-4 py-3 dark:bg-dark-bg">
       <img src="/optimization.png" className="w-14 h-14" alt="logo" />
-
+      <SearchCommand className="max-w-fit"/>
       <div className="flex justify-center">
+
         <div className="flex mt-2 mr-12">
           {theme === "light" ? (
             <TbSunOff

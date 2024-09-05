@@ -1,13 +1,12 @@
-import { Slider } from "@/components/ui/slider";
-import { Button } from "@/components/ui/button";
-import { BsRewind } from "react-icons/bs";
-import { IoPlayOutline } from "react-icons/io5";
-import { IoPauseOutline } from "react-icons/io5";
-import { BsFastForward } from "react-icons/bs";
-import { useState, useRef } from "react";
+import {Slider} from "@/components/ui/slider";
+import {Button} from "@/components/ui/button";
+import {BsFastForward, BsRewind} from "react-icons/bs";
+import {IoPauseOutline, IoPlayOutline} from "react-icons/io5";
+import {useRef, useState} from "react";
 
 import "@/styles/App.css";
 import "@/styles/index.css";
+
 function LofiComponent() {
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -23,8 +22,7 @@ function LofiComponent() {
   }
 
   function handleSliderChange(value) {
-    const newTime = (value / 100) * audioRef.current.buffered.end(0);
-    audioRef.current.currentTime = newTime;
+    audioRef.current.currentTime = (value / 100) * audioRef.current.buffered.end(0);
   }
   return (
     <div className="bg-white rounded-lg my-4 shadow-lg overflow-hidden w-full max-w-xs  dark:bg-dark-bg absolute right-9 top-20 ">
