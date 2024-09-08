@@ -1,7 +1,7 @@
 import "@/styles/App.css";
 import "@/styles/index.css";
-import UserAvatar from "@/components/UserAvatar";
 import { useState, useEffect } from "react";
+import UserAvatar from "@/components/UserAvatar";
 import { SiItunes } from "react-icons/si";
 import { TbSunOff } from "react-icons/tb";
 import { TbSunHigh } from "react-icons/tb";
@@ -26,7 +26,7 @@ const Header = () => {
   });
 
   return (
-    <header className="w-screen z-10 border-2 border-gray-200 dark:border-dark-bg flex justify-between px-4 py-3 dark:bg-dark-bg">
+    <header className="w-screen z-10 border-2 border-gray-200 dark:border-dark-bg flex justify-between px-4 py-3 dark:bg-dark-card">
       <img src="/optimization.png" className="w-14 h-14" alt="logo" />
 
       <div className="flex justify-center">
