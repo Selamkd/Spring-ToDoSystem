@@ -4,7 +4,7 @@ import { RxColorWheel } from "react-icons/rx";
 import { FaUserAstronaut } from "react-icons/fa";
 function SideNav() {
   return (
-    <nav className=" flex flex-col items-center w-1/5 h-screen white dark:bg-dark-card">
+    <nav className=" flex flex-col items-center w-1/5 h-screen white dark:bg-dark-card ">
       <h2 className="py-4 px-4 text-start w-full inter-reg tracking-wider  text-2xl"></h2>
       <p className="pt-4 pb-3 px-2 text-start w-full gruppo-regular text-gray-900 tracking-widest uppercase text-md dark:text-gray-300">
         Menu
